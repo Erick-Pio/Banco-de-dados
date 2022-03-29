@@ -1,0 +1,32 @@
+MER seria a modelagem.
+
+DER o diagrama em si.
+
+Entidadae: tabela são as coisas do mundo real dentro das tabelas basicamente as próprias tabelas.
+
+Atributos: basicamente as colunas - informação associada a entidade, atributos da entidade.
+
+Ex: ENTIDADE: Empregado;
+ATRIBUTOS: nome
+código
+RG
+CPF
+endereço 
+Telefone
+Salário.
+
+Ocorrência ou instância de uma entidade.
+
+nome: José da Silva
+Código: 3456
+Endereço: a casa dele - Rua 1 do lado da rua 2
+Salario: 2,00
+
+a ocorrência ou instância seriam os "dados", ou seja ela corresponde a entidade empregado ;
+
+José da Silva é uma ocorrência da entidade empregado.
+
+Relacionamento
+estabelece uma realação ou associação entre as entidades (Chave estrangeira);
+uma forma de conectar as tabelas, ou, entidades.
+
