@@ -1,0 +1,356 @@
+Microsoft Windows [versão 10.0.19042.1466]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\Aluno>color 1
+
+C:\Users\Aluno>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u aluno -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| leitura            |
+| mysql              |
+| performance_schema |
+| sptech             |
+| sys                |
++--------------------+
+6 rows in set (0.23 sec)
+
+mysql> create database carro;
+Query OK, 1 row affected (0.32 sec)
+
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| carro              |
+| information_schema |
+| leitura            |
+| mysql              |
+| performance_schema |
+| sptech             |
+| sys                |
++--------------------+
+7 rows in set (0.07 sec)
+
+mysql> use carro;
+Database changed
+mysql> show tables;
+Empty set (0.10 sec)
+
+mysql> create table dono(
+    -> idDono int primary key auto_increment,
+    -> nome varchar (30),
+    -> dataNascimento date,
+    -> salario decimal (10,2));
+Query OK, 0 rows affected (2.14 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_carro |
++-----------------+
+| dono            |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> create table(
+    -> create table^C
+mysql> create table carro(
+    -> idCarro int primary key auto_increment,
+    -> modelo varchar(30),
+    -> placa char(8),
+    -> ano int,
+    -> fkDono int,
+    -> foreign key (fkdono) references dono (idDono)
+    -> )auto increment = 101;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto increment = 101' at line 8
+mysql> create table carro(
+    -> idCarro int primary key auto_increment,
+    -> modelo varchar(30),
+    -> placa char(8),
+    -> ano int,
+    -> fkDono int,
+    -> foreign key (fkdono) references dono (idDono)
+    -> )auto_increment = 101;
+Query OK, 0 rows affected (0.68 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_carro |
++-----------------+
+| carro           |
+| dono            |
++-----------------+
+2 rows in set (0.07 sec)
+
+mysql> select * from dono;
+Empty set (0.35 sec)
+
+mysql> insert into dono (nome, dataNascimento, salario) values
+    -> ('Rafael', '1983-01-24', 2500);
+Query OK, 1 row affected (0.46 sec)
+
+mysql> select * from dono
+    -> ^C
+mysql> select * from dono;
++--------+--------+----------------+---------+
+| idDono | nome   | dataNascimento | salario |
++--------+--------+----------------+---------+
+|      1 | Rafael | 1983-01-24     | 2500.00 |
++--------+--------+----------------+---------+
+1 row in set (0.05 sec)
+
+mysql> insert into dono (nome, dataNascimento, salario) values
+    -> ('Izabel', '1944-11-22', 4500);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into dono (nome, dataNascimento, salario) values
+    -> ('Zeca', '1944-11-22', ),
+    -> ('Zeca', '1944-11-22', 4^C0),
+mysql> ('Zeca', '1944-11-22',4500),
+    -> ^C
+mysql> insert into dono (nome, dataNascimento, salario) values
+    -> ('Zeca', '1944-11-22', 4500),
+    -> ('Huguinho', '1944-11-22', 4500),
+    -> ('Zezinho', '1944-11-22', 4500;,
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+    -> insert into dono (nome, dataNascimento, salario) values
+    -> ('Zeca', '1944-11-22', 4500),
+    -> ('Huguinho', '1944-11-22', 4500),
+    -> ('Zezinho', '1944-11-22', 4500);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+insert into dono (nome, dataNascimento, salario) values
+('Zeca', '1944-11-22',' at line 1
+mysql> insert into dono (nome, dataNascimento, salario) values
+    -> ('Zeca', '1944-11-22', 5000),
+    -> ('Huguinho', '1944-11-22', 4500),
+    -> ('Zezinho', '1944-11-22', 4500);
+Query OK, 3 rows affected (0.12 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from dono
+    -> ^C
+mysql> select * from dono;
++--------+----------+----------------+---------+
+| idDono | nome     | dataNascimento | salario |
++--------+----------+----------------+---------+
+|      1 | Rafael   | 1983-01-24     | 2500.00 |
+|      2 | Izabel   | 1944-11-22     | 4500.00 |
+|      3 | Zeca     | 1944-11-22     | 5000.00 |
+|      4 | Huguinho | 1944-11-22     | 4500.00 |
+|      5 | Zezinho  | 1944-11-22     | 4500.00 |
++--------+----------+----------------+---------+
+5 rows in set (0.06 sec)
+
+mysql> insert into carro (modelo, marca, placa, ano, fkdono) values
+    -> ('I30', 'Hyundai', 'Ezz-8888', 2012,1),
+    -> ('Kmbi', 'Vw', 'BZT 9999', 1987,1);
+ERROR 1054 (42S22): Unknown column 'marca' in 'field list'
+mysql> alter table carro add marca varchar (20);
+Query OK, 0 rows affected (1.59 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into carro (modelo, marca, placa, ano, fkdono) values
+    -> ('I30', 'Hyundai', 'Ezz-8888', 2012,1),
+    -> ('Kmbi', 'Vw', 'BZT 9999', 1987,1);
+Query OK, 2 rows affected (0.15 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from carro
+    -> ^C
+mysql> select * from carro;
++---------+--------+----------+------+--------+---------+
+| idCarro | modelo | placa    | ano  | fkDono | marca   |
++---------+--------+----------+------+--------+---------+
+|     101 | I30    | Ezz-8888 | 2012 |      1 | Hyundai |
+|     102 | Kmbi   | BZT 9999 | 1987 |      1 | Vw      |
++---------+--------+----------+------+--------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into carro (modelo, marca, placa, ano, fkdono) values
+    -> ('Corsa', 'GM', 'BKH-3222', 1998,2),
+    -> ('Variant', 'VM', 'YXX-9999', 1977,3),
+    -> ('Golf', 'VM', 'ZZZ-0000', 1989,4),
+    -> ('Brasilia', 'VM', 'ZAP-8573', 2015,5);
+Query OK, 4 rows affected (0.10 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from dono order by dataNascimento;
++--------+----------+----------------+---------+
+| idDono | nome     | dataNascimento | salario |
++--------+----------+----------------+---------+
+|      2 | Izabel   | 1944-11-22     | 4500.00 |
+|      3 | Zeca     | 1944-11-22     | 5000.00 |
+|      4 | Huguinho | 1944-11-22     | 4500.00 |
+|      5 | Zezinho  | 1944-11-22     | 4500.00 |
+|      1 | Rafael   | 1983-01-24     | 2500.00 |
++--------+----------+----------------+---------+
+5 rows in set (0.05 sec)
+
+mysql> select * from carro order by ano desc;
++---------+----------+----------+------+--------+---------+
+| idCarro | modelo   | placa    | ano  | fkDono | marca   |
++---------+----------+----------+------+--------+---------+
+|     106 | Brasilia | ZAP-8573 | 2015 |      5 | VM      |
+|     101 | I30      | Ezz-8888 | 2012 |      1 | Hyundai |
+|     103 | Corsa    | BKH-3222 | 1998 |      2 | GM      |
+|     105 | Golf     | ZZZ-0000 | 1989 |      4 | VM      |
+|     102 | Kmbi     | BZT 9999 | 1987 |      1 | Vw      |
+|     104 | Variant  | YXX-9999 | 1977 |      3 | VM      |
++---------+----------+----------+------+--------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select * from carro where placa like '%9';
++---------+---------+----------+------+--------+-------+
+| idCarro | modelo  | placa    | ano  | fkDono | marca |
++---------+---------+----------+------+--------+-------+
+|     102 | Kmbi    | BZT 9999 | 1987 |      1 | Vw    |
+|     104 | Variant | YXX-9999 | 1977 |      3 | VM    |
++---------+---------+----------+------+--------+-------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql> select * from carro where marc = 'Hyunday';
+ERROR 1054 (42S22): Unknown column 'marc' in 'where clause'
+mysql> select * from carro where marca = 'Hyunday';
+Empty set (0.00 sec)
+
+mysql> select * from carro where marca = 'Hyundai';
++---------+--------+----------+------+--------+---------+
+| idCarro | modelo | placa    | ano  | fkDono | marca   |
++---------+--------+----------+------+--------+---------+
+|     101 | I30    | Ezz-8888 | 2012 |      1 | Hyundai |
++---------+--------+----------+------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> desc carro
+    -> ^C
+mysql> desc carro;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| idCarro | int         | NO   | PRI | NULL    | auto_increment |
+| modelo  | varchar(30) | YES  |     | NULL    |                |
+| placa   | char(8)     | YES  |     | NULL    |                |
+| ano     | int         | YES  |     | NULL    |                |
+| fkDono  | int         | YES  | MUL | NULL    |                |
+| marca   | varchar(20) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+6 rows in set (0.15 sec)
+
+mysql> alter table carro modify modelo varchar(100);
+Query OK, 6 rows affected (2.94 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> desc
+    -> ^C
+mysql> desc carro
+    -> ^C
+mysql> desc carro;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| idCarro | int          | NO   | PRI | NULL    | auto_increment |
+| modelo  | varchar(100) | YES  |     | NULL    |                |
+| placa   | char(8)      | YES  |     | NULL    |                |
+| ano     | int          | YES  |     | NULL    |                |
+| fkDono  | int          | YES  | MUL | NULL    |                |
+| marca   | varchar(20)  | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> update dono set salario = 5000 where iddono = 1;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from dono;
++--------+----------+----------------+---------+
+| idDono | nome     | dataNascimento | salario |
++--------+----------+----------------+---------+
+|      1 | Rafael   | 1983-01-24     | 5000.00 |
+|      2 | Izabel   | 1944-11-22     | 4500.00 |
+|      3 | Zeca     | 1944-11-22     | 5000.00 |
+|      4 | Huguinho | 1944-11-22     | 4500.00 |
+|      5 | Zezinho  | 1944-11-22     | 4500.00 |
++--------+----------+----------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select
+    -> dono.nome,
+    -> dono.dataNascimento,
+    -> dono.salario,
+    -> carro.modelo,
+    -> carro.marca,
+    -> carro.placa,
+    -> carro.ano
+    -> from dono, carro where dono.iddono = carro.fkdono;
++----------+----------------+---------+----------+---------+----------+------+
+| nome     | dataNascimento | salario | modelo   | marca   | placa    | ano  |
++----------+----------------+---------+----------+---------+----------+------+
+| Rafael   | 1983-01-24     | 5000.00 | I30      | Hyundai | Ezz-8888 | 2012 |
+| Rafael   | 1983-01-24     | 5000.00 | Kmbi     | Vw      | BZT 9999 | 1987 |
+| Izabel   | 1944-11-22     | 4500.00 | Corsa    | GM      | BKH-3222 | 1998 |
+| Zeca     | 1944-11-22     | 5000.00 | Variant  | VM      | YXX-9999 | 1977 |
+| Huguinho | 1944-11-22     | 4500.00 | Golf     | VM      | ZZZ-0000 | 1989 |
+| Zezinho  | 1944-11-22     | 4500.00 | Brasilia | VM      | ZAP-8573 | 2015 |
++----------+----------------+---------+----------+---------+----------+------+
+6 rows in set (0.05 sec)
+
+mysql> select
+    -> dono.nome,
+    -> dono.dataNascimento,
+    -> dono.salario,
+    -> carro.modelo,
+    -> carro.marca,
+    -> carro.placa,
+    -> carro.ano
+    -> from dono join carro on dono.iddono = carro.fkdono;
++----------+----------------+---------+----------+---------+----------+------+
+| nome     | dataNascimento | salario | modelo   | marca   | placa    | ano  |
++----------+----------------+---------+----------+---------+----------+------+
+| Rafael   | 1983-01-24     | 5000.00 | I30      | Hyundai | Ezz-8888 | 2012 |
+| Rafael   | 1983-01-24     | 5000.00 | Kmbi     | Vw      | BZT 9999 | 1987 |
+| Izabel   | 1944-11-22     | 4500.00 | Corsa    | GM      | BKH-3222 | 1998 |
+| Zeca     | 1944-11-22     | 5000.00 | Variant  | VM      | YXX-9999 | 1977 |
+| Huguinho | 1944-11-22     | 4500.00 | Golf     | VM      | ZZZ-0000 | 1989 |
+| Zezinho  | 1944-11-22     | 4500.00 | Brasilia | VM      | ZAP-8573 | 2015 |
++----------+----------------+---------+----------+---------+----------+------+
+6 rows in set (0.05 sec)
+
+mysql> select
+    -> dono.nome,
+    -> dono.dataNascimento,
+    -> dono.salario,
+    -> carro.modelo,
+    -> carro.marca,
+    -> carro.placa,
+    -> carro.ano
+    -> from dono join carro on dono.iddono = carro.fkdono
+    -> where dono.nome = 'Rafael';
++--------+----------------+---------+--------+---------+----------+------+
+| nome   | dataNascimento | salario | modelo | marca   | placa    | ano  |
++--------+----------------+---------+--------+---------+----------+------+
+| Rafael | 1983-01-24     | 5000.00 | I30    | Hyundai | Ezz-8888 | 2012 |
+| Rafael | 1983-01-24     | 5000.00 | Kmbi   | Vw      | BZT 9999 | 1987 |
++--------+----------------+---------+--------+---------+----------+------+
+2 rows in set (0.00 sec)
+
+mysql>

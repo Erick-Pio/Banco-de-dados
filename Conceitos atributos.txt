@@ -1,0 +1,37 @@
+Atributo Simples
+Não possui qualquer característica especial. 
+A maioria dos atributos serão simples. 
+Quando um atributo não é composto, 
+recebe um valor único como nome, por exemplo e não é um atributo chave, 
+então ele será atributo simples.
+
+Atributo composto
+O seu conteúdo é formado por vários itens menores.
+ Exemplo: Endereço. Seu conteúdo poderá ser dividido
+ em vários outros atributos, 
+como: Rua, Número, Complemento, Bairro, Cep e Cidade. 
+
+Atributo Monovalorado 
+É formado por apenas um valor.
+
+Atributo Multivalorado
+O seu conteúdo é formado por mais de um valor.
+Exemplo: Telefone. Uma pessoa poderá ter mais de um número de telefone. 
+É indicado colocando-se um asterisco precedendo o nome do atributo.
+
+
+Atributo determinante ou  identificador
+Identifica de forma única uma entidade, ou seja, não pode haver dados repetidos.
+
+É indicado sublinhando-se o nome do atributo. Exemplo: CNPJ, CPF, 
+Código do fornecedor,
+Número da matrícula, etc. Os atributos determinantes serão 
+as chaves primárias 
+no banco de dados e seu uso tem implicações na normalização de dados.
+
+
+ATRIBUTO DERIVADO 
+é um tipo de atributo cujo valor pode ser obtido de
+outros atributos ou relacionamentos.
+
+
