@@ -28,17 +28,17 @@ qtdMaxima int not null check (qtdMaxima >= 0)
 
 create table Sensor(
 idSensor int primary key auto_increment,
-ativacao int not null,
+ativacao int not null check (ativacao = 1 or ativacao = 0),
 tipoSensor varchar(10) check (tipoSensor = 'Entrada' or tipoSensor = 'Saida'), 
-fkAmbiente int not null
+fkLocal int not null
 )auto_increment = 500;
 
 create table dados (
-iddados int primary key auto_increment,
+fksensor int,
+foreign key (fksensor) references sensor (idsensor),
+idDados int,
+primary key (idDados, fksensor),
 presenca int not null,
-datahora datetime not null,
-fksensor int not null,
-foreign key (fksensor) references sensor (idsensor)
-)auto_increment = 10000;
+datahora datetime not null
+)
 
-alter table sensor rename column fkAmbiente to fkLocal;
