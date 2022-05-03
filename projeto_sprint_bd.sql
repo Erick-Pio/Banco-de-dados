@@ -15,7 +15,6 @@ idUsuario int primary key auto_increment,
 nome varchar(35) not null,
 email varchar(40) not null unique,
 senha varchar(20) not null,
-tipoConta varchar(10) check (tipoconta = 'professor' or tipoconta = 'aluno'),
 fkempresa int not null,
 foreign key (fkempresa) references Empresa (idEmpresa)
 )auto_increment = 1000;
