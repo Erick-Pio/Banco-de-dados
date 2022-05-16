@@ -69,11 +69,14 @@ select * from avaliacao;
 
 -- 5. Exibir os dados dos grupos e os dados de seus respectivos alunos
 
-select * from grupo, aluno where fkgrupo = idgrupo;
+select * from grupo, aluno 
+		where fkgrupo = idgrupo;
 
 -- 6. Exibir os dados de um determinado grupo e os dados de seus respectivos alunos.
 
-select * from grupo, aluno where fkgrupo = idgrupo and idgrupo = 1;
+select * from grupo, aluno 
+		where fkgrupo = idgrupo 
+			and idgrupo = 1;
 
 -- 7. Exibir a média das notas atribuídas aos grupos, no geral.
 
@@ -109,9 +112,6 @@ select professor.nome, avg(nota), sum(nota)
 	from avaliacao, professor 
 		group by Professor.nome;
         
-select professor.nome, avg(nota), sum(nota) 
-	from avaliacao, professor 
-		group by Professor.nome;
 
 select grupo.nome, avg(nota), sum(nota) 
 	from avaliacao, grupo 
