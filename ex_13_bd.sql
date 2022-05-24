@@ -5,7 +5,7 @@ use exercicio13;
 create table Departamento(
 idDepto int primary key,
 nomeDepto varchar(45),
-datainicioDepto date
+datainicioGer date
 );
 
 alter table departamento add fkGerente int;
@@ -105,3 +105,64 @@ update funcionario set salario = 2800 where idFunc = 3;
 
 update funcionario set fkDepto = 101 where idFunc = 3;
 
+select salario, dataNasc
+	from funcionario;
+    
+select salario 
+	from funcionario; 
+    
+select distinct salario 
+	from funcionario;    
+    
+select *
+	from funcionario
+		order by nomeFunc;
+        
+select *
+	from funcionario
+		order by salario desc;        
+        
+select *
+	from funcionario 
+		where salario >=2000 and salario <= 4000;
+        
+select nomeFunc, salario
+			from funcionario
+				where nomeFunc like 'j%'; 
+                
+select nomeFunc, salario
+			from funcionario
+				where nomeFunc like '%a';                
+
+select nomeFunc
+	from funcionario
+		where nomeFunc like '__n%';
+        
+select nomeFunc, dataNasc
+	from funcionario
+		where nomeFunc like '%s____';
+        
+select *
+	from funcionario
+		join departamento
+			on fkDepto = idDepto
+	and nomeDepto = 'pesquisa';
+    
+select *
+	from funcionario
+		join departamento
+			on fkDepto = idDepto
+	and nomeDepto = 'pesquisa'
+    and salario > 3500;
+    
+select *
+	from funcionario
+		join departamento
+			on fkDepto = idDepto
+	and nomeDepto = 'pesquisa'
+    and NomeFunc like 'j%';
+    
+select funcionario.idFunc as 'idFuncionario', funcionario.nomeFunc, supervisor.idfunc as 'idFuncionario', supervisor.nomefunc 
+	from Funcionario as funcionario
+		join Funcionario as supervisor
+			on funcionario.fkSupervisor = supervisor.idFunc;
