@@ -166,3 +166,73 @@ select funcionario.idFunc as 'idFuncionario', funcionario.nomeFunc, supervisor.i
 	from Funcionario as funcionario
 		join Funcionario as supervisor
 			on funcionario.fkSupervisor = supervisor.idFunc;
+            
+select projeto.idProj,
+	   departamento.idDepto,
+       funcionario.nomeFunc,
+       funcionario.dataNasc
+	from projeto
+		join departamento
+			on iddepto = fkDepto
+		join funcionario
+			on idFunc = fkgerente
+	and localproj = 'São Paulo';
+
+select funcionario.idFunc, 
+	funcionario.nomeFunc, 
+	projeto.idproj, 
+	projeto.nomeproj, 
+	funcproj.hora
+		from funcionario
+			join funcproj
+				on idFunc = fkFunc
+			join projeto
+				on idproj= fkProj;
+
+select funcionario.nomeFunc
+	from funcionario
+		where dataNasc < '1980-01-01';
+        
+select count(distinct salario)
+	from funcionario;
+    
+select count(distinct localProj)
+	from projeto;
+    
+select round(avg(salario)) as 'média salário', round(sum(salario)) as 'soma dos salários'
+	from funcionario;
+    
+select min(salario), max(salario)
+	from funcionario;
+    
+select departamento.idDepto, round(avg(round));
+
+select departamento.idDepto, funcionario.salario, sum(salario)
+	from departamento
+		join funcionario
+			on fkDepto = idDepto
+				group by departamento.idDepto;
+                
+select departamento.idDepto, funcionario.salario, min(salario), max(salario)
+	from departamento
+		join funcionario
+			on fkDepto = idDepto
+				group by departamento.idDepto;    
+                
+insert into Funcionario (idFunc, nomeFunc, salario, sexo, fkSupervisor, dataNasc, fkDepto) values                
+(10, 'José da Silva', 1800, 'm', 3, '2000-10-12', null),
+(11, 'Benedito Almeida', 1200, 'm', 5, '2001-09-01', null);
+
+insert into departamento (idDepto, nomeDepto, fkGerente, datainicioGer)values 
+(110, 'RH', 3, '2018-11-10');
+
+select *
+	from funcionario
+		left join departamento 
+			on idDepto = fkDepto;
+
+
+select *
+	from departamento
+		 left join funcionario
+			on idDepto = fkDepto;        
